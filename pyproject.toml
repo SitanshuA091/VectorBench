@@ -1,0 +1,18 @@
+[project]
+name = "vecbench"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "datasets>=5.0.0",
+    "faiss-cpu>=1.14.3",
+    "numpy>=2.5.1",
+    "pandas>=3.0.3",
+    "plotly>=6.8.0",
+    "psutil>=7.2.2",
+    "pypdf>=6.14.2",
+    "rank-bm25>=0.2.2",
+    "sentence-transformers>=5.6.0",
+    "streamlit>=1.59.1",
+]
