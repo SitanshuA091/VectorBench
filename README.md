@@ -4,12 +4,12 @@ A benchmarking playground for FAISS vector indexes. VecBench builds and compares
 
 ## Introduction
 
-Most people interact with vector search through a library call in a RAG pipeline, where a vector store handles embedding, indexing, and retrieval invisibly behind an API. VecBench builds those pieces from scratch (using FAISS's index implementations directly, not reimplementing the algorithms) so you can see and measure exactly what each index type is doing, and where its tradeoffs actually show up.
+Generally we interact with vector search through a library call in a RAG pipeline, where a vector store handles embedding, indexing, and retrieval invisibly behind an API. VectorBench builds those pieces from scratch **(using FAISS's index implementations directly, not reimplementing the algorithms)** so you can see and measure exactly what each index type is doing, and where its tradeoffs actually show up.
 
 ## Project structure
 
 ```
-VecBench/
+VectorBench/
 ├── data/           # dataset download, chunking, and embedding scripts
 ├── indexes/        # wrapper classes around FAISS index types (IVF, HNSW, PQ, ...)
 ├── retrieval/       # BM25, reciprocal rank fusion, metadata filtering
@@ -24,7 +24,7 @@ VecBench/
 
 1. Clone the repository
    ```
-   git clone <repo-url>
+   git clone https://github.com/SitanshuA091/VectorBench
    cd VecBench
    ```
 
@@ -58,9 +58,9 @@ VecBench/
    from data.download import download_dataset
    from data.chunk import chunk_dataset
    from engine import VectorSearchEngine
-
-   download_dataset(dataset_name="", split="train", output_dir="")
-   chunk_dataset(input_path="", output_path="")
+   
+   download_dataset(dataset_name="rajpurkar/squad", split="train", output_dir="data/raw/squad")
+   chunk_dataset(input_path="data/raw/squad/raw_data.jsonl", output_path="data/raw/squad/chunked_data.jsonl")
 
    engine = VectorSearchEngine(index_type="ivf")
    # load chunked_data.jsonl, pass documents/metadatas into engine.add_documents(...)
