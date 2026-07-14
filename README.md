@@ -1,4 +1,4 @@
-# VectorBench
+# **VectorBench**
 
 A benchmarking playground for FAISS vector indexes. VecBench builds and compares Flat, IVF, HNSW, and PQ indexes on recall@k, latency, and memory, and layers on hybrid BM25 + vector retrieval with metadata filtering. The goal is to expose what's normally hidden inside a vector database — embedding, indexing, and retrieval as separate, inspectable pieces rather than one opaque `similarity_search()` call.
 
