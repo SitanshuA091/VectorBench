@@ -4,7 +4,7 @@ A benchmarking playground for FAISS vector indexes. VecBench builds and compares
 
 ## Introduction
 
-Generally we interact with vector search through a library call in a RAG pipeline, where a vector store handles embedding, indexing, and retrieval invisibly behind an API. VectorBench builds those pieces from scratch **(using FAISS's index implementations directly, not reimplementing the algorithms)** so you can see and measure exactly what each index type is doing, and where its tradeoffs actually show up.
+Generally we interact with vector search through a library call in a RAG pipeline, where a vector store handles embedding, indexing, and retrieval invisibly behind an API. VectorBench builds those pieces from scratch **(using FAISS's index implementations directly, not reimplementing the algorithms)** so one can see and measure exactly what each index type is doing, and where its tradeoffs actually show up.
 
 ## Project structure
 
@@ -88,3 +88,4 @@ Metadata filtering can be layered on top of any mode via the `filter` argument t
 - Embedding models are downloaded once via `sentence-transformers` and cached locally; subsequent runs load from cache with no network call.
 - FAISS index classes are used directly (`faiss.IndexIVFFlat`, `faiss.IndexHNSWFlat`, `faiss.IndexIVFPQ`); this project wraps them with a consistent interface rather than reimplementing the underlying algorithms.
 - Recall@k benchmarking requires a ground-truth reference index (typically an exact/uncompressed index) to compare approximate results against.
+- **Upcoming** - proper comparative dashboard
