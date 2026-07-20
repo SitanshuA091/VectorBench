@@ -90,4 +90,5 @@ Metadata filtering can be layered on top of any mode via the `filter` argument t
 - Embedding models are downloaded once via `sentence-transformers` and cached locally; subsequent runs load from cache with no network call.
 - FAISS index classes are used directly (`faiss.IndexIVFFlat`, `faiss.IndexHNSWFlat`, `faiss.IndexIVFPQ`); this project wraps them with a consistent interface rather than reimplementing the underlying algorithms.
 - Recall@k benchmarking requires a ground-truth reference index (typically an exact/uncompressed index) to compare approximate results against.
+- The `test_exps/` directory contains sample evaluation scripts that demonstrate how to benchmark the framework on Hugging Face datasets and analyze performance metrics and results.
 - **Upcoming** - proper comparative dashboard
