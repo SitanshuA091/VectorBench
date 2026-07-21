@@ -1,16 +1,19 @@
 import faiss
 import numpy as np
-from indexes.base import BaseIndex
+from vectorbench_faiss.indexes.base import BaseIndex
 
-class PQIndex(BaseIndex):
-    def __init__(self, dim: int, nlist: int, nbits: int, m):
+class IVFIndex(BaseIndex):
+    def __init__(self, dim: int, nlist: int = 100, nprobe: int = 8):
         super().__init__(dim)
         self.nlist = nlist
-        self.m = m
-        # 8 or 16 since dim/m should be divisible
-        self.nbits = nbits
+        self.nprobe = nprobe
+
         quantizer = faiss.IndexFlatL2(dim)
-        self.index = faiss.IndexIVFPQ(quantizer, dim, nlist, m, nbits)
+        self.index = faiss.IndexIVFFlat(quantizer, dim, nlist)
+
+        # nprobe will be a runtime search parameter, not whilst building
+        # set it now so search() picks it up automatically.
+        self.index.nprobe = self.nprobe
 
     def train(self, vectors: np.ndarray) -> None:
         vectors = self._ensure_float32(vectors)
@@ -19,7 +22,7 @@ class PQIndex(BaseIndex):
 
     def add(self, vectors: np.ndarray) -> None:
         if not self.is_trained:
-            raise RuntimeError("PQIndex must be trained before calling add()")
+            raise RuntimeError("IVFIndex must be trained before calling add()")
 
         vectors = self._ensure_float32(vectors)
         self.index.add(vectors)
@@ -33,4 +36,3 @@ class PQIndex(BaseIndex):
     def set_nprobe(self, nprobe: int) -> None:
         self.nprobe = nprobe
         self.index.nprobe = nprobe
-    

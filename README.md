@@ -24,58 +24,108 @@ VectorBench/
 
 ## Usage
 
-1. Clone the repository
-   ```
-   git clone https://github.com/SitanshuA091/VectorBench
-   cd VecBench
-   ```
+### Option 1: Install from PyPI
 
-2. Install dependencies with uv
-   ```
-   uv sync
-   ```
+Install the latest released version:
 
-3. (Optional) Set a local model cache directory in `.env` at the project root, so downloaded embedding models are stored inside the project instead of your global HF cache
-   ```
-   HF_HOME=./.cache
-   ```
+```bash
+pip install vectorbench_faiss
+```
 
-4. Use the engine directly in a script or notebook
-   ```python
-   from engine import VectorSearchEngine
+Then import the package:
 
-   documents = ["your first document", "your second document", "..."]
-   metadatas = [{"source": "notes"}, {"source": "notes"}]
+```python
+from vectorbench_faiss.engine import VectorSearchEngine
+```
 
-   engine = VectorSearchEngine(index_type="hnsw")
-   engine.add_documents(documents, metadatas=metadatas)
+---
 
-   results = engine.search("a query string", k=5, mode="vector")
-   for r in results:
-       print(r["score"], r["text"])
-   ```
+### Option 2: Install from source (GitHub)
 
-5. Or run it against a real dataset via the data pipeline
-   ```python
-   from data.download import download_dataset
-   from data.chunk import chunk_dataset
-   from engine import VectorSearchEngine
-   
-   download_dataset(dataset_name="rajpurkar/squad", split="train", output_dir="data/raw/squad")
-   chunk_dataset(input_path="data/raw/squad/raw_data.jsonl", output_path="data/raw/squad/chunked_data.jsonl")
+Clone the repository:
 
-   engine = VectorSearchEngine(index_type="ivf")
-   # load chunked_data.jsonl, pass documents/metadatas into engine.add_documents(...)
-   ```
+```bash
+git clone https://github.com/SitanshuA091/VectorBench.git
+cd VectorBench
+```
 
-6. Run the benchmark harness to compare index types
-   ```python
-   from benchmark import BenchmarkRunner
+Install the project dependencies using `uv`:
 
-   engines = {"ivf": ivf_engine, "hnsw": hnsw_engine, "pq": pq_engine}
-   runner = BenchmarkRunner(engines, ground_truth_key="ivf")
-   results = runner.run_all(documents, queries)
-   ```
+```bash
+uv sync
+```
+
+(Optional) Create a `.env` file in the project root to cache embedding models locally instead of the global Hugging Face cache:
+
+```text
+HF_HOME=./.cache
+```
+
+---
+
+### Using the search engine
+
+```python
+from vectorbench_faiss.engine import VectorSearchEngine
+
+documents = ["your first document", "your second document", "..."]
+metadatas = [{"source": "notes"}, {"source": "notes"}]
+
+engine = VectorSearchEngine(index_type="hnsw")
+engine.add_documents(documents, metadatas=metadatas)
+
+results = engine.search("a query string", k=5, mode="vector")
+
+for r in results:
+    print(r["score"], r["text"])
+```
+
+---
+
+### Running on a real dataset
+
+```python
+from vectorbench_faiss.data.download import download_dataset
+from vectorbench_faiss.data.chunk import chunk_dataset
+from vectorbench_faiss.engine import VectorSearchEngine
+
+download_dataset(
+    dataset_name="rajpurkar/squad",
+    split="train",
+    output_dir="data/raw/squad",
+)
+
+chunk_dataset(
+    input_path="data/raw/squad/raw_data.jsonl",
+    output_path="data/raw/squad/chunked_data.jsonl",
+)
+
+engine = VectorSearchEngine(index_type="ivf")
+
+# Load chunked_data.jsonl and pass the
+# documents/metadatas into engine.add_documents(...)
+```
+
+---
+
+### Running benchmarks
+
+```python
+from vectorbench_faiss.benchmark import BenchmarkRunner
+
+engines = {
+    "ivf": ivf_engine,
+    "hnsw": hnsw_engine,
+    "pq": pq_engine,
+}
+
+runner = BenchmarkRunner(
+    engines,
+    ground_truth_key="ivf",
+)
+
+results = runner.run_all(documents, queries)
+```
 
 ## Search modes
 

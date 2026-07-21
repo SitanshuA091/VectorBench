@@ -1,6 +1,6 @@
 from datasets import load_dataset
 
-from engine import VectorSearchEngine
+from vectorbench_faiss.engine import VectorSearchEngine
 
 
 dataset = load_dataset("rajpurkar/squad", split="train")

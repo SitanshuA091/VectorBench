@@ -1,6 +1,6 @@
 from datasets import load_dataset
-from engine import VectorSearchEngine
-from benchmark import BenchmarkRunner
+from vectorbench_faiss.engine import VectorSearchEngine
+from vectorbench_faiss.benchmark import BenchmarkRunner
 
 def load_ms_marco(split: str = "train", n_queries: int = 1000, version: str = "v1.1"):
     dataset = load_dataset("microsoft/ms_marco", version, split=split)

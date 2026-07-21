@@ -1,6 +1,6 @@
 from datasets import load_dataset
 
-from engine import VectorSearchEngine
+from vectorbench_faiss.engine import VectorSearchEngine
 
 
 def load_ms_marco(split: str = "train", n_queries: int = 1000, version: str = "v1.1"):

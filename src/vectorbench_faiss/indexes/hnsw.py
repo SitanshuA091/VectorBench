@@ -1,6 +1,6 @@
 import faiss
 import numpy as np
-from indexes.base import BaseIndex
+from vectorbench_faiss.indexes.base import BaseIndex
 
 class HNSWIndex(BaseIndex):
     def __init__(self, dim: int, M: int = 32, metric_type=faiss.METRIC_L2):

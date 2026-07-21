@@ -1,12 +1,12 @@
 from sentence_transformers import SentenceTransformer
 
-from indexes.ivf import IVFIndex
-from indexes.hnsw import HNSWIndex
-from indexes.pq import PQIndex
+from vectorbench_faiss.indexes.ivf import IVFIndex
+from vectorbench_faiss.indexes.hnsw import HNSWIndex
+from vectorbench_faiss.indexes.pq import PQIndex
 
-from retrieval.bm25 import BM25Retriever
-from retrieval.fusion import reciprocal_rank_fusion
-from retrieval.filter import apply_filter
+from vectorbench_faiss.retrieval.bm25 import BM25Retriever
+from vectorbench_faiss.retrieval.fusion import reciprocal_rank_fusion
+from vectorbench_faiss.retrieval.filter import apply_filter
 
 
 INDEX_REGISTRY = {
