@@ -23,7 +23,7 @@ class VectorSearchEngine:
 
         self.index_type = index_type
         self.embedder = SentenceTransformer(embedding_model)
-        self.dim = self.embedder.get_sentence_embedding_dimension()
+        self.dim = self.embedder.get_embedding_dimension()
 
         index_class = INDEX_REGISTRY[index_type]
         self.index = index_class(dim=self.dim, **index_kwargs)
