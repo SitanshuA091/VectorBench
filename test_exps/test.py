@@ -21,11 +21,11 @@ for row in dataset:
 print(f"Loaded {len(documents)} unique documents")
 print(f"Unique titles: {len(set(m['title'] for m in metadatas))}")
 
-engine = VectorSearchEngine(index_type="hnsw")
+engine = VectorSearchEngine(index_type="pq")
 engine.add_documents(documents, metadatas=metadatas)
 
 query = "When was Notre Dame founded?"
-results = engine.search(query, k=5, mode="vector")
+results = engine.search(query, k=5, mode="hybrid")
 
 print(f"\nQuery: {query}\n")
 for r in results:

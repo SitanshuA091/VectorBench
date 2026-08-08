@@ -3,7 +3,7 @@ import numpy as np
 from vectorbench_faiss.indexes.base import BaseIndex
 
 class PQIndex(BaseIndex):
-    def __init__(self, dim: int, nlist: int, nbits: int, m):
+    def __init__(self, dim: int, nlist: int = 10, nbits: int = 4, m: int = 8):
         super().__init__(dim)
         self.nlist = nlist
         self.m = m
