@@ -4,9 +4,9 @@ build-backend = "uv_build"
 
 [project]
 name = "vectorbench-faiss"
-version = "0.1.0"
+version = "0.1.1"
 description = "A benchmarking playground for FAISS vector indexes with hybrid BM25 + vector retrieval"
-readme = "README.md"
+readme = "README_pypi.md"
 requires-python = ">=3.13"
 dependencies = [
     "faiss-cpu>=1.14.3",
