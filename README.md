@@ -1,4 +1,6 @@
-# **VectorBench** <img width="40" height="40" alt="image" src="https://github.com/user-attachments/assets/6a29a923-b2d2-4f9d-90c2-e8bf6d6b84e6" />
+# **VectorBench** 
+![Python](https://img.shields.io/badge/Python-3.13-blue) ![FAISS](https://img.shields.io/badge/Faiss-CPU) 
+<img width="1920" height="728" alt="VectorBench (1)" src="https://github.com/user-attachments/assets/33b124ff-f2eb-4f82-86f0-ac010050b434" />
 
 
 
