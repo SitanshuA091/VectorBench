@@ -1,5 +1,5 @@
 # **VectorBench** 
-![Python](https://img.shields.io/badge/Python-3.13-blue) ![FAISS](https://img.shields.io/badge/Faiss-CPU) 
+![Python](https://img.shields.io/badge/Python-3.13-blue) ![FAISS](https://img.shields.io/badge/Faiss-CPU) [![PyPI Downloads](https://static.pepy.tech/personalized-badge/vectorbench-faiss?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads)](https://pepy.tech/projects/vectorbench-faiss)
 <img width="1920" height="728" alt="VectorBench (1)" src="https://github.com/user-attachments/assets/33b124ff-f2eb-4f82-86f0-ac010050b434" />
 
 
